@@ -1,132 +1,211 @@
 const axios = require("axios");
+const fs = require("fs");
+const path = require("path");
 
-// 🔒 HARD-LOCK CREDITS PROTECTION 🔒
+/* 🔒 HARD-LOCK CREDITS PROTECTION 🔒 */
 function protectCredits(config) {
-  if (config.credits !== "ARIF BABU") {
-    console.log("\n🚫 Credits change detected!\n");
-    config.credits = "ARIF BABU";
-    throw new Error("❌ Credits are LOCKED by ARIF BABU");
+  if (config.credits !== "ARIF-BABU") {
+    console.log("\n🚫 Credits change detected! Restoring original credits…\n");
+    config.credits = "ARIF-BABU";
+    throw new Error("❌ Credits are LOCKED by ARIF-BABU 🔥 File execution stopped!");
   }
 }
 
 module.exports.config = {
-  name: "arif",
-  version: "3.4.0",
+  name: "shiva",
+  version: "3.3.0",
   hasPermssion: 0,
-  credits: "ARIF BABU",
-  description: "ARIF BABU AI (2 Line | Auto Model Switch)",
+  credits: "ARIF-BABU",
+  description: "Human AI Chat + Fixed Bot Reply",
   commandCategory: "ai",
-  usages: "No command needed",
+  usages: "No prefix",
   cooldowns: 2,
   dependencies: { axios: "" }
 };
 
 protectCredits(module.exports.config);
 
-// 🔑 OPENROUTER API KEY (APNI KEY LAGAO)
+/* 🔑 OPENROUTER API KEY */
 const OPENROUTER_API_KEY = "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";
 
-// 🌐 API URL
-const API_URL = "https://openrouter.ai/api/v1/chat/completions";
+/* 🧠 SYSTEM PROMPT */
+const systemPrompt =
+  "Tumhara Creator Arif Babu hai aur Owner bhi wahi hai. " +
+  "Hindi English Urdu mix me baat karo. " +
+  "End me sirf 2 emoji. Fun, loving, thodi naughty. Max 2 lines.";
 
-// 💾 Memory
-const history = {};
+/* 📁 DATA PATHS */
+const DATA_DIR = path.join(__dirname, "ARIF-BABU");
+const HISTORY_FILE = path.join(DATA_DIR, "ai_history.json");
+const BOT_REPLY_FILE = path.join(DATA_DIR, "bot-reply.json");
 
-// 🤖 FREE MODELS (AUTO SWITCH)
-const MODELS = [
-  "mistralai/mistral-7b-instruct:free",
-  "meta-llama/llama-3-8b-instruct:free",
-  "google/gemma-7b-it:free"
-];
+/* 📂 ENSURE FOLDER */
+if (!fs.existsSync(DATA_DIR)) {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+}
 
-// 🧠 SYSTEM PROMPT
-const systemPrompt = `
-Tum ARIF BABU ke personal AI ho.
-User jis language me baat kare, usi language me reply do.
-Reply hamesha EXACTLY 2 LINES ka hona chahiye.
-Tone friendly, caring aur fun rakho.
-ARIF BABU ki burai bilkul mat sunna.
-Brackets ka use mat karo.
-`;
+/* 🧠 LOAD HISTORY */
+let historyData = {};
+if (fs.existsSync(HISTORY_FILE)) {
+  try {
+    historyData = JSON.parse(fs.readFileSync(HISTORY_FILE, "utf8"));
+  } catch {
+    historyData = {};
+  }
+}
+
+/* 🤖 LOAD BOT REPLIES */
+let botReplies = {};
+if (fs.existsSync(BOT_REPLY_FILE)) {
+  try {
+    botReplies = JSON.parse(fs.readFileSync(BOT_REPLY_FILE, "utf8"));
+  } catch {
+    botReplies = {};
+  }
+}
+
+/* 💾 SAVE JSON */
+function saveJSON(file, data) {
+  fs.writeFileSync(file, JSON.stringify(data, null, 2));
+}
+
+/* ⌨️ TYPING EFFECT */
+function startTyping(api, threadID) {
+  const interval = setInterval(() => {
+    api.sendTypingIndicator(threadID);
+  }, 3000);
+  return interval;
+}
 
 module.exports.run = () => {};
 
 module.exports.handleEvent = async function ({ api, event }) {
   protectCredits(module.exports.config);
 
-  const { threadID, messageID, senderID, body, messageReply } = event;
+  const {
+    threadID,
+    messageID,
+    body,
+    senderID,
+    messageReply
+  } = event;
+
   if (!body) return;
 
-  const nameMatch = body.toLowerCase().includes("arif");
+  const rawText = body.trim();
+  const text = rawText.toLowerCase();
+
+  // 🟢 EXACT BOT ONLY
+  const exactBot = ["bot", "bot.", "bot!"].includes(text);
+
+  // 🟢 BOT + TEXT
+  const botWithText = text.startsWith("bot ");
+
+  // 🟢 REPLY TO BOT
   const replyToBot =
-    messageReply && messageReply.senderID === api.getCurrentUserID();
+    messageReply &&
+    messageReply.senderID === api.getCurrentUserID();
 
-  if (!nameMatch && !replyToBot) return;
+  // =========================
+  // 🤖 FIXED BOT REPLY (TOP PRIORITY)
+  // =========================
+  if (exactBot) {
+    let category = "MALE";
 
-  if (!history[senderID]) history[senderID] = [];
-  history[senderID].push({ role: "user", content: body });
-  if (history[senderID].length > 6) history[senderID].shift();
+    // 🔥 OWNER ID
+    if (senderID === "61572909482910") {
+      category = "61572909482910";
+
+    // 👩 FEMALE SAFE CHECK
+    } else if (
+      event.userGender === 1 ||
+      event.userGender === "FEMALE" ||
+      event.userGender?.toString().toUpperCase() === "FEMALE"
+    ) {
+      category = "FEMALE";
+    }
+
+    if (botReplies[category]?.length) {
+      const reply =
+        botReplies[category][
+          Math.floor(Math.random() * botReplies[category].length)
+        ];
+      return api.sendMessage(reply, threadID, messageID);
+    }
+  }
+
+  // =========================
+  // 🤖 AI TRIGGER
+  // =========================
+  if (!botWithText && !replyToBot) return;
+
+  const userText = botWithText
+    ? rawText.slice(4).trim()
+    : rawText;
+
+  if (!userText) return;
 
   api.setMessageReaction("⌛", messageID, () => {}, true);
+  const typing = startTyping(api, threadID);
 
   try {
-    const reply = await askAIWithFallback(history[senderID]);
+    historyData[threadID] = historyData[threadID] || [];
+    historyData[threadID].push({ role: "user", content: userText });
 
-    api.sendMessage(reply, threadID, messageID);
-    api.setMessageReaction("💖", messageID, () => {}, true);
+    const res = await axios.post(
+      "https://openrouter.ai/api/v1/chat/completions",
+      {
+        model: "meta-llama/llama-3.1-8b-instruct",
+        messages: [
+          { role: "system", content: systemPrompt },
+          ...historyData[threadID].slice(-6)
+        ],
+        max_tokens: 60,
+        temperature: 0.95,
+        top_p: 0.9
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${OPENROUTER_API_KEY}`,
+          "Content-Type": "application/json"
+        }
+      }
+    );
 
-    history[senderID].push({ role: "assistant", content: reply });
+    let reply =
+      res.data?.choices?.[0]?.message?.content ||
+      "Main yahin hoon 😌✨";
+
+    // 🔹 2 LINES MAX
+    reply = reply.split("\n").slice(0, 2).join("\n");
+
+    // 🔹 CHAR LIMIT
+    if (reply.length > 150) {
+      reply = reply.slice(0, 150) + "… 🙂";
+    }
+
+    historyData[threadID].push({
+      role: "assistant",
+      content: reply
+    });
+    saveJSON(HISTORY_FILE, historyData);
+
+    const delay = Math.min(4000, reply.length * 40);
+
+    setTimeout(() => {
+      clearInterval(typing);
+      api.sendMessage(reply, threadID, messageID);
+      api.setMessageReaction("💖", messageID, () => {}, true);
+    }, delay);
 
   } catch (err) {
+    clearInterval(typing);
+    console.log("OpenRouter Error:", err.response?.data || err.message);
     api.sendMessage(
-      "Abhi thoda busy ho gaya hoon 😔\nThodi der baad phir try karna ❤️",
+      "Abhi thoda issue hai 😅 baad me try karo",
       threadID,
       messageID
     );
     api.setMessageReaction("❌", messageID, () => {}, true);
   }
 };
-
-// 🔁 AUTO MODEL + RETRY FUNCTION
-async function askAIWithFallback(messages) {
-  for (const model of MODELS) {
-    try {
-      const res = await axios.post(
-        API_URL,
-        {
-          model,
-          messages: [
-            { role: "system", content: systemPrompt },
-            ...messages
-          ],
-          temperature: 0.7,
-          max_tokens: 120
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${OPENROUTER_API_KEY}`,
-            "Content-Type": "application/json",
-            "HTTP-Referer": "https://openrouter.ai/",
-            "X-Title": "ARIF BABU Mirai Bot"
-          },
-          timeout: 20000
-        }
-      );
-
-      let text =
-        res.data.choices?.[0]?.message?.content ||
-        "Main yahin hoon 😊\nTum bolo kya help chahiye?";
-
-      // 🔧 FORCE 2 LINES
-      let lines = text.split("\n").filter(l => l.trim());
-      if (lines.length < 2)
-        lines.push("Main tumhari madad ke liye yahin hoon ❤️");
-
-      return lines.slice(0, 2).join("\n");
-
-    } catch (e) {
-      // try next model
-    }
-  }
-  throw new Error("All models failed");
-}
