@@ -20,13 +20,13 @@ module.exports = function ({ api, models }) {
               const _ID = file.replace('.json', '');
               return _ADMINIDs.includes(_ID) || global.data.allThreadID.includes(_ID);
             });
-            console.log('ARIF BABU');
+            console.log('SULTAN JI');
             await new Promise(async resolve => {
                 for (const checkttFile of checkttData) {
                     const checktt = JSON.parse(fs.readFileSync(checkttDataPath + checkttFile));
                     let storage = [], count = 1;
                     for (const item of checktt.day) {
-                        const userName = await Users.getNameUser(item.id) || 'ARIF BABU';
+                        const userName = await Users.getNameUser(item.id) || 'SULTAN JI';
                         const itemToPush = item;
                         itemToPush.name = userName;
                         storage.push(itemToPush);
@@ -41,7 +41,7 @@ module.exports = function ({ api, models }) {
                             return a.name.localeCompare(b.name);
                         }
                     });
-                    let checkttBody = '==ARIF BABU ♥️==\n\n';
+                    let checkttBody = '==SULTAN JI ♥️==\n\n';
                     checkttBody += storage.slice(0, 10).map(item => {
                         return `${count++}. ${item.name} with ${item.count} message`;
                     }).join('\n');
@@ -58,12 +58,12 @@ module.exports = function ({ api, models }) {
 
             await new Promise(async resolve => {
                 if (day_now == 1) {
-                    console.log('ARIF BABU');
+                    console.log('SULTAN JI');
                     for (const checkttFile of checkttData) {
                         const checktt = JSON.parse(fs.readFileSync(checkttDataPath + checkttFile));
                         let storage = [], count = 1;
                         for (const item of checktt.week) {
-                            const userName = await Users.getNameUser(item.id) || 'ARIF BABU HU YAR';
+                            const userName = await Users.getNameUser(item.id) || 'SULTAN JI HU YAR';
                             const itemToPush = item;
                             itemToPush.name = userName;
                             storage.push(itemToPush);
@@ -78,7 +78,7 @@ module.exports = function ({ api, models }) {
                                 return a.name.localeCompare(b.name);
                             }
                         });
-                        let checkttBody = '==ARIF BABU ♥️==\n\n';
+                        let checkttBody = '==SULTAN JI ♥️==\n\n';
                         checkttBody += storage.slice(0, 10).map(item => {
                             return `${count++}. ${item.name} with ${item.count} message`;
                         }).join('\n');
@@ -103,7 +103,7 @@ module.exports = function ({ api, models }) {
     (async function () {
 
         try {
-            logger(global.getText('listen', 'startLoadEnvironment'), '[ ARIF BABU ]');
+            logger(global.getText('listen', 'startLoadEnvironment'), '[ SULTAN JI ]');
             let threads = await Threads.getAll(),
                 users = await Users.getAll(['userID', 'name', 'data']),
                 currencies = await Currencies.getAll(['userID']);
@@ -135,12 +135,12 @@ module.exports = function ({ api, models }) {
                     global['data']['commandBanned']['set'](idUsers, dataU['data']['commandBanned']);
             }
             for (const dataC of currencies) global.data.allCurrenciesID.push(String(dataC['userID']));
-            logger.loader(global.getText('listen', 'loadedEnvironmentUser')), logger(global.getText('listen', 'successLoadEnvironment'), '[ ARIF BABU ]');
+            logger.loader(global.getText('listen', 'loadedEnvironmentUser')), logger(global.getText('listen', 'successLoadEnvironment'), '[ SULTAN JI ]');
         } catch (error) {
             return logger.loader(global.getText('listen', 'failLoadEnvironment', error), 'error');
         }
     }());
-    logger(`[ ${global.config.PREFIX} ] • ${(!global.config.BOTNAME) ? "" : global.config.BOTNAME}`, "[ ARIF BABU ]");
+    logger(`[ ${global.config.PREFIX} ] • ${(!global.config.BOTNAME) ? "" : global.config.BOTNAME}`, "[ SULTAN JI ]");
 
     ///////////////////////////////////////////////
     //========= Require all handle need =========//
