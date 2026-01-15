@@ -9,8 +9,8 @@ const extraTriggers = {
     { match: ["manshi", "manshi babu"], reply: "Please take Mansi’s name respectfully bro 🙏🙂" },
     { match: ["koi hai", "koi h"], reply: "Yes bro, I am here 😊" },
     { match: ["....", "..."], reply: "Arif bro is busy, tell me what you need 😊" },
-    { match: ["boss", "kiska bot hai"], reply: "I am Arif Babu’s bot bro 😊" },
-    { match: ["bot admin", "bot ka admin kon hai"], reply: "Admin is Arif Babu bro 🙏" },
+    { match: ["boss", "kiska bot hai"], reply: "I am Mahtab Babu’s bot bro 😊" },
+    { match: ["bot admin", "bot ka admin kon hai"], reply: "Admin is Mahtab Babu bro 🙏" },
     { match: ["🙈"], reply: "Why are you feeling shy bro 😅" },
     { match: ["sadi karoge", "mujhse shadi karoge?"], reply: "Don’t joke like that bro 😅🙏" },
     { match: ["bot gandu", "gandu bot"], reply: "Please don’t abuse bro 🙏🙂" },
@@ -80,7 +80,7 @@ const extraTriggers = {
   ],
 
   OWNER: [
-    { match: ["hi", "hello", "hlw", "helo"], reply: "My lovely owner Arif Babu 😍👑" },
+    { match: ["hi", "hello", "hlw", "helo"], reply: "My lovely owner Mahtab Babu 😍👑" },
     { match: ["koi hai", "koi h"], reply: "Yes boss, I am here 😊" },
     { match: ["👍", "👍🏻"], reply: "Okay my boss 👍😌" },
     { match: ["🤮", "🤮🤮"], reply: "Boss are you okay? 😟🙏" },
@@ -89,7 +89,7 @@ const extraTriggers = {
     { match: ["manshi", "manshi babu"], reply: "Boss, please take Mansi’s name with love 😊" },
     { match: ["....", "..."], reply: "Boss, tell me what you need 😊" },
     { match: ["boss", "kiska bot hai"], reply: "I belong only to Arif Babu 👑" },
-    { match: ["bot admin", "bot ka admin kon hai"], reply: "My owner is Arif Babu 👑" },
+    { match: ["bot admin", "bot ka admin kon hai"], reply: "My owner is Mahtab Babu 👑" },
     { match: ["🙈"], reply: "Why are you shy boss 😅" },
     { match: ["sadi karoge", "mujhse shadi karoge?"], reply: "Boss, you are joking 😅👑" },
     { match: ["bot gandu", "gandu bot"], reply: "Boss please don’t abuse 🙏🙂" },
