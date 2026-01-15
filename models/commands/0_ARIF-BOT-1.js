@@ -7,12 +7,12 @@ function protectCredits(config) {
   if (config.credits !== "ARIF-BABU") {
     console.log("\n🚫 Credits change detected! Restoring original credits…\n");
     config.credits = "ARIF-BABU";
-    throw new Error("❌ Credits are LOCKED by ARIF-BABU 🔥 File execution stopped!");
+    throw new Error("❌ Credits are LOCKED by MAHTAB-BABU 🔥 File execution stopped!");
   }
 }
 
 module.exports.config = {
-  name: "ARIF-AI",
+  name: "Ai",
   version: "3.3.1",
   hasPermssion: 0,
   credits: "ARIF-BABU",
@@ -30,8 +30,8 @@ const OPENROUTER_API_KEY = "sk-or-v1-8be13f619838d1f97326c335fb7455b7cc03ac88197
 
 /* 🧠 SYSTEM PROMPT */
 const systemPrompt = `
-Tum Sultan Babu AI ho 🙂
-Creator & Owner: Sultan Babu ❤️
+Tum Mahtab Babu AI ho 🙂
+Creator & Owner: Mahtab Babu ❤️
 
 Golden Rules (kabhi mat todna):
 • User kisi bhi language (Hindi, English, Urdu, Roman, etc.), style ya mood mein bole — reply hamesha usi language mein dena.
@@ -117,7 +117,7 @@ module.exports.handleEvent = async function ({ api, event }) {
     let category = "MALE";
 
     // 🔥 OWNER ID
-    if (senderID === "61572909482910") category = "61572909482910";
+    if (senderID === "100033685782498") category = "61572909482910";
     else {
       const gender = (event.userGender || "").toString().toUpperCase();
       if (gender === "FEMALE" || gender === "1") category = "FEMALE";
