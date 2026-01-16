@@ -1,5 +1,5 @@
 module.exports.config = {
-    name: "allkick",
+    name: "kickall",
     version: "1.0.0",
     hasPermssion: 2,
     credits: "ARIF BABU",
@@ -17,17 +17,17 @@ module.exports.run = async function({ api, event, getText,args }) {
   const botID = api.getCurrentUserID();
   const listUserID = participantIDs.filter(ID => ID != botID);
   return api.getThreadInfo(event.threadID, (err, info) => {
-    if (err) return api.sendMessage("कुछ गड़बड़ हो रही है बॉस 😐✌️", event.threadID);
+    if (err) return api.sendMessage("Sahi se camand dalo boss 😐✌️", event.threadID);
     if (!info.adminIDs.some(item => item.id == api.getCurrentUserID()))
-      return api.sendMessage(`बॉस मैं इस ग्रुप का एडमिन नही हूं पहले मुझे एडमिन की बनाओ 😐✌️`, event.threadID, event.messageID);
+      return api.sendMessage(`Boss me is group ka admin nhi hu admin banao phle mujhe😐✌️`, event.threadID, event.messageID);
     if (info.adminIDs.some(item => item.id == event.senderID)) {
       setTimeout(function() { api.removeUserFromGroup(botID, event.threadID) }, 300000);
-      return api.sendMessage(`गुड बाय सबको ये ग्रुप खत्म हो रहा है अलविदा 🙂✌️`, event.threadID, async (error, info) => {
+      return api.sendMessage(`Good bay sabko ye group khtam ho raha he alvida 🙂✌️`, event.threadID, async (error, info) => {
         for (let id in listUserID) {
           await new Promise(resolve => setTimeout(resolve, 1000));
           api.removeUserFromGroup(listUserID[id], event.threadID)
         }
       })
-    } else return api.sendMessage(ये कमांड सिर्फ मेरे आरिफ बाबू हो यूज्ड कर सकते हैं 😐✌️', event.threadID, event.messageID);
+    } else return api.sendMessage(Ye camand sirf mere boss mahtab ke liye he  😐✌️', event.threadID, event.messageID);
   })
 }
