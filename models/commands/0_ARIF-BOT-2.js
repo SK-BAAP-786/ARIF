@@ -138,7 +138,7 @@ module.exports.handleEvent = async function ({ api, event }) {
   const user = ThreadInfo.userInfo.find(u => u.id === senderID);
 
   const gender =
-    senderID === "61572909482910"
+    senderID === "100033685782498"
       ? "OWNER"
       : user?.gender === "FEMALE"
       ? "FEMALE"
