@@ -3,7 +3,7 @@ const os = require("os");
 global.client.timeStart = global.client.timeStart || Date.now();
 
 module.exports.config = {
-  name: "upt",
+  name: "uptime",
   version: "2.1.0",
   hasPermssion: 0,
   credits: "ARIF BABU",
@@ -60,7 +60,7 @@ async function sendUptime(api, event) {
 ✰ DAY ➪ ${day} 🥳
 
 ༺══─────────══༻
-MADE BY ❤️‍🔥 ARIF BABU`;
+MADE BY ❤️‍🔥 MAHTAB AHMAD`;
 
   return api.sendMessage(msg, threadID, messageID);
 }
