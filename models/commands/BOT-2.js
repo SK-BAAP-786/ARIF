@@ -48,9 +48,9 @@ const extraTriggers = {
     { match: ["bc"], reply: "Please don’t abuse ma’am 🙏🙂" },
     { match: ["manshi", "manshi babu"], reply: "Please take Mansi’s name respectfully ma’am 🙏" },
     { match: ["koi hai", "koi h"], reply: "Yes ma’am, I am here 😊" },
-    { match: ["....", "..."], reply: "Arif sir is busy, please tell me ma’am 😊" },
-    { match: ["boss", "kiska bot hai"], reply: "I am Arif Babu’s bot ma’am 👸✨" },
-    { match: ["bot admin", "bot ka admin kon hai"], reply: "Admin is Arif Babu ma’am 😊🙏" },
+    { match: ["....", "..."], reply: "Mahtab sir is busy, please tell me ma’am 😊" },
+    { match: ["boss", "kiska bot hai"], reply: "I am Mahtab Babu’s bot ma’am 👸✨" },
+    { match: ["bot admin", "bot ka admin kon hai"], reply: "Admin is Mahtab Babu ma’am 😊🙏" },
     { match: ["🙈"], reply: "Why are you shy ma’am 😅✨" },
     { match: ["sadi karoge", "mujhse shadi karoge?"], reply: "Please don’t say this ma’am 🙏🙂" },
     { match: ["bot gandu", "gandu bot"], reply: "Please don’t abuse ma’am 🙏" },
@@ -120,7 +120,7 @@ const extraTriggers = {
 };
 
 module.exports.config = {
-  name: "ARIF-EMOJI-REPLY",
+  name: "Mahtab-IMOJI-REPLY",
   version: "1.0.0",
   hasPermssion: 0,
   credits: "ARIF BABU",
