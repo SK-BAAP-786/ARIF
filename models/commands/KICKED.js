@@ -12,8 +12,8 @@ module.exports.config = {
 module.exports.languages = {
 	"en": {
 		"error": "सॉरी बॉस कुछ गड़बड़ है 🤔",
-		"needPermssion": "सॉरी बॉस मैं इस ग्रुप में एडमिन नही हूं बिना एडमिन के मैं किसी को रिमूव नही कर सकता 😐✌️",
-		"missingTag": "बॉस जिसको रिमूव करना है ग्रुप से उसको मेंशन करो साथ में 😐✌️"
+		"needPermssion": "Sorry boss me is group me admin nhi hu bina admin ke me kisi ko remove nhi kr skta 😐✌️",
+		"missingTag": "Boss jisko Remove krna he group se usko mention kro sath me 😐✌️"
 	}
 }
 
@@ -22,7 +22,7 @@ module.exports.run = async function({ api, event, getText, Threads }) {
 	try {
 		let dataThread = (await Threads.getData(event.threadID)).threadInfo;
 		if (!dataThread.adminIDs.some(item => item.id == api.getCurrentUserID())) return api.sendMessage(getText("needPermssion"), event.threadID, event.messageID);
-		if(!mention[0]) return api.sendMessage("बॉस जिसको रिमूव करना है ग्रुप से उसको मेंशन करो साथ में 😐✌️",event.threadID);
+		if(!mention[0]) return api.sendMessage("Boss Jisko remove krna he group se usko mention kro sath me 😐✌️",event.threadID);
 		if (dataThread.adminIDs.some(item => item.id == event.senderID)) {
 			for (const o in mention) {
 				setTimeout(() => {
