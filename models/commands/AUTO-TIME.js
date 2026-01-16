@@ -1,4 +1,4 @@
-const schedule = require("node-schedule");
+coarmahedule = require("node-schedule");
 const moment = require("moment-timezone");
 const chalk = require("chalk");
 
@@ -29,11 +29,11 @@ const messages = [
     { time: "11:30 AM", text: "😻•✧ Mujhe bhi yaad kar liya karo ✧•😻" },
     { time: "12:30 PM", text: "🌞•✧ Good Afternoon Everyone ✧•🌞" },
     { time: "1:30 PM", text: "🍽️•✧ Lunch kar lo baby ✧•🍽️" },
-    { time: "2:30 PM", text: "🙏•✧ Jai Shree Ram ✧•🙏" },
+    { time: "2:30 PM", text: "🙏•✧ or batao kaise ho sab ✧•🙏" },
     { time: "3:30 PM", text: "🥀•✧ Thoda aaram kar lo ✧•🥀" },
     { time: "4:30 PM", text: "🥵•✧ Bahut garmi hai aaj ✧•🥵" },
     { time: "5:30 PM", text: "😊•✧ Hamesha khush raho ✧•😊" },
-    { time: "6:30 PM", text: "🚩•✧ Sanatan Dharma Zindabad ✧•🚩" },
+    { time: "6:30 PM", text: "🚩•✧ Assalamu walaikum gareebo•🚩" },
     { time: "7:30 PM", text: "💞•✧ Khush rehna mera promise ✧•💞" },
     { time: "8:30 PM", text: "🍛•✧ Dinner karna mat bhoolo ✧•🍛" },
     { time: "9:30 PM", text: "💖•✧ Mere cute baby ✧•💖" },
