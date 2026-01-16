@@ -1,6 +1,6 @@
 const fs = require("fs");
 module.exports.config = {
-  name: "arif aa gya",
+  name: "mahtab",
     version: "1.0.1",
   hasPermssion: 0,
   credits: "ARIF BABU", 
@@ -12,10 +12,10 @@ module.exports.config = {
 
 module.exports.handleEvent = function({ api, event, client, __GLOBAL }) {
   var { threadID, messageID } = event;
-  if (event.body.indexOf("Arif")==0 || event.body.indexOf("arif")==0 || event.body.indexOf("Arif babu")==0 || event.body.indexOf("ARIF")==0) {
+  if (event.body.indexOf("Arif")==0 || event.body.indexOf("arif")==0 || event.body.indexOf("Mahtab babu")==0 || event.body.indexOf("MAHTAB ")==0) {
     var msg = {
-        body: "मुझे मेरे आरिफ बाबू बॉस ने बनाया है 😐",
-        attachment: fs.createReadStream(__dirname + `/ARIF-BABU/dk.mp3`)
+        body: "Mujhe mere Mahtab Boss  ne banaya he 😐",
+        attachment: fs.createReadStream(__dirname + `/MAHTAB-BABU/dk.mp3`)
       }
       api.sendMessage(msg, threadID, messageID);
     api.setMessageReaction("😘", event.messageID, (err) => {}, true)
