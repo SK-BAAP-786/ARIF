@@ -1,5 +1,5 @@
 module.exports.config = {
-  name: "meme",
+  name: "name",
   version: "2.0.5",
   hasPermssion: 0,
   credits: "ARIF BABU",
