@@ -33,7 +33,7 @@ module.exports.handleEvent = async function ({ api, event }) {
 // ===== PREFIX COMMAND (OPTIONAL) =====
 module.exports.run = async function ({ api, event }) {
   api.sendMessage(
-    "✅ Unsend system already active.\n\n🔍 Prefix / no-prefix dono mein kaam karta hai.\n🔒 By ARIF BABU",
+    "✅ Unsend system already active.\n\n🔍 Prefix / no-prefix dono mein kaam karta hai.\n🔒 By MAHTAB BABU",
     event.threadID
   );
 };
